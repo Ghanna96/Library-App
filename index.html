@@ -12,9 +12,35 @@
 </head>
 
 <body>
+  <div class="popUp">
+    <div id="popUpContent">
+        <div class="close">+</div>
+      <form>
+          Title : <input type="text" id="title">   
+          Author :<input type="text" id="author">   
+          Pages : <input type="text" id="pages">
+          Read?<br>
+          Yes: <input type="radio" id="read" name="read" value="Yes" checked>
+          No:   <input type="radio" id="read" name="read" value="No">
+            <button id="addBook">Submit</button>
+      </form>
+    </div>
+    
+  </div>
 
-
+  <button id="spawn">Add book</button>
   <script src="js/script.js"></script>
 </body>
+  <!--
+
+  
+    <div id="books">
+      <section class="card">
+        <h3>Progress Card</h3>
+      </section>
+    </div>
+  -->
+
+
 
 </html>
