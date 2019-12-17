@@ -12,10 +12,10 @@ ul{
     float: left;
     height: 210px;
     margin: 10px;
-    position: relative;
+
     width: 200px;
   }
-button {
+button, #addBook{
     background-color:#1686d9;
     border: 2px solid white;
 	border-radius: 30px;
@@ -36,7 +36,7 @@ input[type="radio"]{
     display: inline-block;
     margin-top: 20px;
 }
-form button{
+#addBook{
     display: block;
     margin: 50px auto ;
 }
@@ -74,7 +74,8 @@ form input[type="text"]{
 	color: #333;
 	transform: rotate(45deg);
     cursor: pointer;
-    /* :hover {
-		color: #666;
-	} */
+    /* */
 }
+.close:hover {
+    color: #666;
+} 

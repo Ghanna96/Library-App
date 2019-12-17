@@ -1,4 +1,5 @@
-let myLibrary = [
+"use strict";
+const myLibrary = [
     {
     title: "The Hobbit",
     author: "J.R.R. Tolkien",
@@ -8,12 +9,24 @@ let myLibrary = [
 ];
 const addBook= document.querySelector("#addBook");
 const div= document.querySelector("#books");
-
-addBook.addEventListener('click',addBookToLibrary);
+const popUp=document.querySelector('.popUp');
+window.addEventListener('load', () =>{ 
+    defaultRender();
+  });
+addBook.addEventListener('click',()=>{
+    addBookToLibrary();
+    popUp.style.display = "none";
+});
 
 document.querySelector('#spawn').addEventListener("click", function() {
-	document.querySelector('.popUp').style.display = "flex";
+	popUp.style.display = "flex";
 });
+document.querySelector('.close').addEventListener("click", function() {
+	popUp.style.display = "none";
+});
+
+//-----------------------------
+// render();
 function book(title,author,pages,read){
     this.title=title;
     this.author=author;
@@ -31,12 +44,10 @@ function addBookToLibrary() {
         read=document.querySelector('input[name="read"]:checked').value;
     myLibrary.push(new book(title,author,pages,read));
     render();
-    return
 }
 
-function render(){
+function defaultRender(){
     let section= document.createElement("section");
-    section.innerHTML="";
     for(let i in myLibrary){
         section.innerHTML=`<ul>
                             <li>Title: ${myLibrary[i].title}</li>
@@ -50,13 +61,29 @@ function render(){
         section.classList.add('card'); 
         div.appendChild(section);
     }
-    return
 }
-render();
-                            
-                                
-                             
-
-                             
-                             
-                             
+const render=()=>{
+    let section= document.createElement("section");
+    let index= myLibrary.length-1;
+    section.innerHTML=      `<ul>
+                            <li>Title: ${myLibrary[index].title}</li>
+                            <br>
+                            <li>Author: ${myLibrary[index].author}</li>
+                            <br>
+                            <li>Pages: ${myLibrary[index].pages}</li>
+                            <br>
+                            <li>Read: ${myLibrary[index].read}</li>
+                            </ul>  `;
+    section.classList.add('card');
+    div.appendChild(section);
+    return
+};
+/* <ul>
+                            <li>Title: ${myLibrary[index].title}</li>
+                            <br>
+                            <li>Author: ${myLibrary[index].author}</li>
+                            <br>
+                            <li>Pages: ${myLibrary[index].pages}</li>
+                            <br>
+                            <li>Read: ${myLibrary[index].read}</li>
+                            </ul>  `; */
