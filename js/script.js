@@ -8,11 +8,11 @@ const myLibrary = [
 }
 ];
 const addBook= document.querySelector("#addBook");
-const div= document.querySelector("#books");
+const books= document.querySelector("#books");
 const popUp=document.querySelector('.popUp');
-window.addEventListener('load', () =>{ 
-    defaultRender();
-  });
+// window.addEventListener('load', () =>{ 
+//     defaultRender();
+//   });
 addBook.addEventListener('click',()=>{
     addBookToLibrary();
     popUp.style.display = "none";
@@ -21,12 +21,47 @@ addBook.addEventListener('click',()=>{
 document.querySelector('#spawn').addEventListener("click", function() {
 	popUp.style.display = "flex";
 });
-document.querySelector('.close').addEventListener("click", function() {
+document.querySelector('#closeForm').addEventListener("click", function() {
 	popUp.style.display = "none";
 });
 
+
+
 //-----------------------------
 // render();
+const addEvent=()=>{
+            document.querySelectorAll(".close").forEach((x)=>{
+            x.addEventListener("click",(e)=>{
+                let o=x.getAttribute('data-index');
+                // document.querySelector(`.card[data-index="${o}"]`).remove();
+                e.currentTarget.parentNode.remove();
+                myLibrary.splice(o,1);
+            })
+        });
+        };
+function defaultRender(){
+        let section= document.createElement("section");
+        if(myLibrary.length==0){
+            return
+        }
+        for(let i in myLibrary){
+            section.innerHTML=`
+                                <div class="close" data-index=${i}>+</div>
+                                <ul>
+                                <li>Title: ${myLibrary[i].title}</li>
+                                <br>
+                                <li>Author: ${myLibrary[i].author}</li>
+                                <br>
+                                <li>Pages: ${myLibrary[i].pages}</li>
+                                <br>
+                                <li>Read: ${myLibrary[i].read}</li>
+                                </ul>  `;
+            section.classList.add('card'); 
+            books.appendChild(section);
+        }
+        addEvent();
+};
+defaultRender();
 function book(title,author,pages,read){
     this.title=title;
     this.author=author;
@@ -43,29 +78,15 @@ function addBookToLibrary() {
         pages=document.querySelector("#pages").value,
         read=document.querySelector('input[name="read"]:checked').value;
     myLibrary.push(new book(title,author,pages,read));
-    render();
+    renderLast();
 }
 
-function defaultRender(){
-    let section= document.createElement("section");
-    for(let i in myLibrary){
-        section.innerHTML=`<ul>
-                            <li>Title: ${myLibrary[i].title}</li>
-                            <br>
-                            <li>Author: ${myLibrary[i].author}</li>
-                            <br>
-                            <li>Pages: ${myLibrary[i].pages}</li>
-                            <br>
-                            <li>Read: ${myLibrary[i].read}</li>
-                            </ul>  `;
-        section.classList.add('card'); 
-        div.appendChild(section);
-    }
-}
-const render=()=>{
+const renderLast=()=>{
     let section= document.createElement("section");
     let index= myLibrary.length-1;
-    section.innerHTML=      `<ul>
+    section.innerHTML=`
+                        <div class="close" data-index=${index}>+</div>
+                        <ul>
                             <li>Title: ${myLibrary[index].title}</li>
                             <br>
                             <li>Author: ${myLibrary[index].author}</li>
@@ -73,9 +94,10 @@ const render=()=>{
                             <li>Pages: ${myLibrary[index].pages}</li>
                             <br>
                             <li>Read: ${myLibrary[index].read}</li>
-                            </ul>  `;
+                        </ul>`;
     section.classList.add('card');
-    div.appendChild(section);
+    books.appendChild(section);
+    addEvent();
     return
 };
 /* <ul>
