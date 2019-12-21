@@ -15,12 +15,12 @@ window.addEventListener('load', () =>{
         for(let i in myLibrary){
             render(i);
         }
+        return
     }
 });
 //pop up form
 addBook.addEventListener('click',()=>{
     addBookToLibrary();
-    popUp.style.display = "none";
 });
 document.querySelector('#spawn').addEventListener("click", function() {
 	popUp.style.display = "flex";
@@ -36,11 +36,12 @@ const addEvent=(currentElement,book)=>{
 
     x.addEventListener("click",()=>{
         handleClose(x);
+        return
     })
 
     y.addEventListener("click",()=>{
         handleReading(y,book);
-        
+        return
     })
 };
 // myLibrary.push(new book("The Hobbit","J.R.R. Tolkien",295,"Read"));
@@ -54,11 +55,13 @@ function store(){
 
 const updateLib=()=>{
     localStorage.setItem('library', JSON.stringify(myLibrary));
+    return
 }
 
 const handleReading=(button,book)=>{
-    button.value=book.changeStatus();
-    
+    book.read= (book.read==="Read")? "Not read": "Read";
+    button.value=book.read;
+    return
 };
 
 const handleClose=(x)=>{
@@ -72,26 +75,23 @@ function book(title,author,pages,read){
     this.title=title;
     this.author=author;
     this.pages=pages;
-    this.read=read
-    this.changeStatus=()=>{
-        this.read= (this.read==="Read")? "Not read": "Read";
-        return this.read;
-    }
+    this.read=read;
     this.info= ()=>{
         return this.title+" by "+this.author+", "+this.pages+" pages, "+this.read+"."
     }
-}
+};
+
 //render book in HTML
 const render=(i)=>{ 
     let section= document.createElement("section");
     section.innerHTML=` 
     <ul data-index=${i}>
     <div class="close">+</div>
-    <li>Title: ${myLibrary[i].title}</li>
+    <li>${myLibrary[i].title}</li>
     <br>
-    <li>Author: ${myLibrary[i].author}</li>
+    <li>${myLibrary[i].author}</li>
     <br>
-    <li>Pages: ${myLibrary[i].pages}</li>
+    Pages:<li> ${myLibrary[i].pages}</li>
     <br>
     <li><input type="button" value="${myLibrary[i].read}"></button></li>
     </ul>
@@ -110,7 +110,12 @@ const addBookToLibrary=()=> {
         author=document.querySelector("#author").value,
         pages=document.querySelector("#pages").value,
         read=document.querySelector('input[name="read"]:checked').value;
-    myLibrary.push(new book(title,author,pages,read));
-    updateLib();
-    render(myLibrary.length-1);
+    if(title== "" || author== "" || pages== ""){
+        alert ("please fill all the fields");
+    }else{
+        myLibrary.push(new book(title,author,pages,read));
+        updateLib();
+        render(myLibrary.length-1);
+        popUp.style.display = "none";
+    }
 }

@@ -1,0 +1,35 @@
+[33mcommit 1025f31e1269b115058971e2019e1bc04798d246[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m
+Author: Ghanna96 <akramghanna@outlook.com>
+Date:   Fri Dec 20 23:47:29 2019 +0100
+
+    added local storage support
+
+[33mcommit cf065b8bf23f5f19f88fbce910c6c338c824222a[m
+Author: Ghanna96 <akramghanna@outlook.com>
+Date:   Wed Dec 18 18:14:13 2019 +0100
+
+    removing books working
+
+[33mcommit 2524dc6a91a1142b71574729f888ec52b9597a6a[m
+Author: Ghanna96 <akramghanna@outlook.com>
+Date:   Tue Dec 17 17:05:33 2019 +0100
+
+    added pop up form
+
+[33mcommit 57ce5cbc7107c707c581ee24af4d7677d383ca4c[m
+Author: Ghanna96 <akramghanna@outlook.com>
+Date:   Mon Dec 16 23:17:13 2019 +0100
+
+    add book button
+
+[33mcommit f75698a61a60c44cdfee018a6b6a3c27f56f1a58[m
+Author: Ghanna96 <akramghanna@outlook.com>
+Date:   Sat Dec 14 17:35:50 2019 +0100
+
+    skeleton
+
+[33mcommit d9cf6483f4d53b2d47fc73869dbfe7b6d451bf8a[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Akram Ghanname <53256344+Ghanna96@users.noreply.github.com>
+Date:   Sat Dec 14 17:30:59 2019 +0100
+
+    Initial commit
