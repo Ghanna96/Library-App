@@ -68,6 +68,7 @@ function handleReading(button,book){
     book.read= (book.read==="Read")? "Not read": "Read";
     button.value=book.read;
     changeBackground(button.value,button)
+    updateLib();
     return
 };
 function changeBackground(r,button){
@@ -84,15 +85,31 @@ function handleClose(x){
     updateLib();
 };
 //constructor
-function book(title,author,pages,read){
-    this.title=title;
-    this.author=author;
-    this.pages=pages;
-    this.read=read;
-    this.info= ()=>{
-        return this.title+" by "+this.author+", "+this.pages+" pages, "+this.read+"."
+
+class book{
+    constructor(title,author,pages,read){
+        this.title=title;
+        this.author=author;
+        this.pages=pages;
+        this.read=read;
+    }
+    get info(){
+        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}.`;
     }
 };
+
+
+
+
+// function book(title,author,pages,read){
+//     this.title=title;
+//     this.author=author;
+//     this.pages=pages;
+//     this.read=read;
+//     this.info= ()=>{
+//         return this.title+" by "+this.author+", "+this.pages+" pages, "+this.read+"."
+//     }
+// };
 
 
 //read the name...
@@ -121,7 +138,7 @@ function startPage(){
 }
 function updateLib(){
     localStorage.setItem('library', JSON.stringify(myLibrary));
-    return
+
 }
 function store(){
     let libStore=JSON.parse(localStorage.getItem('library'));
